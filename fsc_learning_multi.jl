@@ -36,6 +36,7 @@ function fsc_learning_multi{T}(data::LearningData{T}, optParams::LearningOpts{T}
   const ZtZ       = data.ZtZ;
   const Ztx       = data.Ztx;
   const d         = optParams.Dinit;
+        s         = optParams.s;
         lambda_s  = optParams.lambda_s;
         mu_s::T   = optParams.mu_s;
   const max_iter  = optParams.max_iter;
@@ -60,7 +61,9 @@ function fsc_learning_multi{T}(data::LearningData{T}, optParams::LearningOpts{T}
   if isempty(d);
     d = zeros(T, dictSize, filtLen);
   end
-  s = s_subproblem(d, mu_s, lambda_s);
+  if isempty(s) || vecnorm(s)==0;
+    s = s_subproblem(d, mu_s, lambda_s);
+  end
 
 
 

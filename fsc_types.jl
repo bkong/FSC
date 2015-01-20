@@ -22,6 +22,7 @@ type LearningData{T}
 end
 type LearningOpts{T}
   Dinit::Array{T, 2};
+  s::Array{T, 2};
   lambda_s::Array{T, 2};
   mu_s::T;       # 1
   max_iter::Int; # 1000
@@ -29,7 +30,7 @@ type LearningOpts{T}
   DEBUG::Bool;   # false
   debugData::Dict;
 end
-LearningOpts(T) = LearningOpts{T}(zeros(0, 0), zeros(0, 0), 1., 1000, 1e-10, false, Dict());
+LearningOpts(T) = LearningOpts{T}(zeros(0, 0), zeros(0, 0), zeros(0, 0), 1., 1000, 1e-10, false, Dict());
 
 
 type FSCOpts{T}

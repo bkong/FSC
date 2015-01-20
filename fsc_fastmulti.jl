@@ -121,6 +121,7 @@ function fsc_fastmulti{T}(X::Array{T, 2}, dictSize::Int, optParams::FSCOpts{T})
         learnData.Ztx += z[:, j]*x[:, j]';
       end
       learnParams.Dinit = d;
+      learnParams.s = s;
       learnParams.mu_s = mu_s;
       learnParams.lambda_s = lambda_s;
       (d, s) = fsc_learning_multi(learnData, learnParams);
